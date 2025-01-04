@@ -1,0 +1,53 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "URL Shortener API",
+      "version": "1.0.0",
+      "description": "API for shortening URLs and tracking analytics"
+    },
+    "paths": {
+      "/api/shorten": {
+        "post": {
+          "summary": "Create a short URL",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "longUrl": {
+                      "type": "string",
+                      "example": "https://www.example.com"
+                    },
+                    "customAlias": {
+                      "type": "string",
+                      "example": "myCustomAlias"
+                    },
+                    "topic": {
+                      "type": "string",
+                      "example": "acquisition"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/shorten/{alias}": {
+        "get": {
+          "summary": "Redirect to the original URL",
+          "parameters": [
+            {
+              "name": "alias",
+              "in": "path",
+              "required": true,
+              "description": "The alias of the short URL"
+            }
+          ]
+        }
+      }
+    }
+  }
+  
